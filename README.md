@@ -1,4 +1,4 @@
-# Microsserviço de Pagamento - FIAP Tech Challenge | Pós Tech
+# Microsserviço de Pedido - FIAP Tech Challenge | Pós Tech
 
 Projeto de Gestão de Pedidos para uma lanchonete desenvolvido para avaliação do curso de Pós-graduação em Arquitetura de Software da FIAP. Módulo destinado ao micro-serviço de Pagamento, que em conjuntos com os demais módulos de *[Pagamento](https://github.com/EvertonSilva/fiap_techchallenge_pagamento)* e *[Preparação](https://github.com/EvertonSilva/fiap_techchallenge_preparacao)*, compõem a solução.
 
