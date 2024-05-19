@@ -1,0 +1,83 @@
+{
+  "className": "br.com.fiap.techchallengelanchonete.bdd.pedido.scenarios.PedidoScenarioTest",
+  "name": "Pedido Scenario",
+  "scenarios": [
+    {
+      "className": "br.com.fiap.techchallengelanchonete.bdd.pedido.scenarios.PedidoScenarioTest",
+      "testMethodName": "cria_pedido",
+      "description": "cria pedido",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "pedido com itens",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "pedido com itens"
+                },
+                {
+                  "value": "[ItemPedido(produto\u003dProduto(nome\u003dNome(valor\u003dHamburguer), descricao\u003dDescricao(valor\u003d), preco\u003dValor(valor\u003d0), categoria\u003dCategoria(nome\u003dNome(valor\u003d)), imagens\u003d[]), quantidade\u003dQuantidade(valor\u003d1))]",
+                  "argumentInfo": {
+                    "argumentName": "itensPedido",
+                    "formattedValue": "[ItemPedido(produto\u003dProduto(nome\u003dNome(valor\u003dHamburguer), descricao\u003dDescricao(valor\u003d), preco\u003dValor(valor\u003d0), categoria\u003dCategoria(nome\u003dNome(valor\u003d)), imagens\u003d[]), quantidade\u003dQuantidade(valor\u003d1))]"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 55875400,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "solicita inclusao pedido",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "solicita inclusao pedido"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 4623192500,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "pedido deve ser criado com status 201",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "pedido deve ser criado com status 201"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 46257900,
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "durationInNanos": 4742641000
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 4742641000
+    }
+  ],
+  "tagMap": {}
+}

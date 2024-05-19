@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  api-pedido:
+    container_name: 'api-pedido-lanchonete'
+    build: .
+    volumes:
+      - './:/app'
+    ports:
+      - 8082:8080
+    environment:
+      - SPRING_PROFILE=dev
+      - SPRING_RABBITMQ_HOST=message-broker
+      - SPRING_RABBITMQ_PORT=5672
+    depends_on:
+      - database-pedido
+      - message-broker
+
+  database-pedido:
+    container_name: 'postgresql-pedido-lanchonete'
+    image: 'postgres:alpine3.18'
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_PASSWORD: Postgres!1@2#3
+
+  message-broker:
+    container_name: 'rabbitmq-lanchonete'
+    image: 'rabbitmq:management'
+    ports:
+      - 5672:5672
+      - 15672:15672
