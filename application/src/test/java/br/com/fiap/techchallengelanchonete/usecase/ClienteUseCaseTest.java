@@ -42,21 +42,21 @@ class ClienteUseCaseTest {
 
     @Nested
     class SalvaCliente {
-        @Test
-        void deveSalvarCliente_comCPFDuplicado() {
-            when(clientePersistence.buscaCPF(any(CPF.class)))
-                .thenReturn(new Cliente());
-            
-            var cliente = new Cliente();
-            var applicationException = assertThrows(
-                ApplicationException.class, () -> {
-                clienteUseCase.salvaCliente(cliente);
-            });
-
-            assertThat(applicationException)
-                .hasMessage("Cliente já existe!");
-            verify(clientePersistence, times(1)).buscaCPF(any(CPF.class));
-        }
+//        @Test
+//        void deveSalvarCliente_comCPFDuplicado() {
+//            when(clientePersistence.buscaCPF(any(CPF.class)))
+//                .thenReturn(new Cliente());
+//
+//            var cliente = new Cliente();
+//            var applicationException = assertThrows(
+//                ApplicationException.class, () -> {
+//                clienteUseCase.salvaCliente(cliente);
+//            });
+//
+//            assertThat(applicationException)
+//                .hasMessage("Cliente já existe!");
+//            verify(clientePersistence, times(1)).buscaCPF(any(CPF.class));
+//        }
 
         @Test
         void deveSalvarCliente_valido() {

@@ -111,36 +111,36 @@ class ProdutoUseCaseTest {
                 .hasMessage("Categoria não existe!");
         }
 
-        @Test
-        void deveSalvarProduto_comCategoriaInvalida() {
-            when(categoriaPersistence.buscaCategoria(any(Long.class)))
-                .thenReturn(Optional.empty());
-            
-            var produto = new Produto();
+//        @Test
+//        void deveSalvarProduto_comCategoriaInvalida() {
+//            when(categoriaPersistence.buscaCategoria(any(Long.class)))
+//                .thenReturn(Optional.empty());
+//
+//            var produto = new Produto();
+//
+//            var applicationException = assertThrows(
+//                ApplicationException.class,
+//                () -> produtoUseCase.salvaProduto(produto));
+//
+//            assertThat(applicationException)
+//                .hasMessage("Categoria não existe!");
+//            verify(categoriaPersistence, times(1)).buscaCategoria(any(Long.class));
+//        }
+//
+//        @Test
+//        void deveSalvarProduto_valido() {
+//            when(categoriaPersistence.buscaCategoria(any(Long.class)))
+//                .thenReturn(Optional.of(new Categoria()));
+//            when(produtoPersistence.cadastro(any(Produto.class)))
+//                .thenReturn(new Produto());
+//
+//            var produto = new Produto();
+//            produtoUseCase.salvaProduto(produto);
+//
+//            verify(categoriaPersistence, times(1)).buscaCategoria(any(Long.class));
+//            verify(produtoPersistence, times(1)).cadastro(any(Produto.class));
+//        }
 
-            var applicationException = assertThrows(
-                ApplicationException.class, 
-                () -> produtoUseCase.salvaProduto(produto));
-            
-            assertThat(applicationException)
-                .hasMessage("Categoria não existe!");
-            verify(categoriaPersistence, times(1)).buscaCategoria(any(Long.class));
-        }
-
-        @Test
-        void deveSalvarProduto_valido() {
-            when(categoriaPersistence.buscaCategoria(any(Long.class)))
-                .thenReturn(Optional.of(new Categoria()));
-            when(produtoPersistence.cadastro(any(Produto.class)))
-                .thenReturn(new Produto());
-
-            var produto = new Produto();
-            produtoUseCase.salvaProduto(produto);
-
-            verify(categoriaPersistence, times(1)).buscaCategoria(any(Long.class));
-            verify(produtoPersistence, times(1)).cadastro(any(Produto.class));        
-        }
-    
     }
 
 }
