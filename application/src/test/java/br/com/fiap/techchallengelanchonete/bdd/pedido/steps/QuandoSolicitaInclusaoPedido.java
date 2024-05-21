@@ -26,11 +26,11 @@ public class QuandoSolicitaInclusaoPedido extends Stage<QuandoSolicitaInclusaoPe
 
         // insere produto previamente
         HttpEntity<String> requestProduto = new HttpEntity<>(toJson(pedido.getItens().get(0).getProduto()), headers);
-        restTemplate.postForEntity("http://localhost:8082/api/produtos", requestProduto, Produto.class);
+        restTemplate.postForEntity("http://localhost:8081/api/produtos", requestProduto, Produto.class);
 
         // tenta inserir pedido
         HttpEntity<String> requestPedido = new HttpEntity<>(toJson(pedido), headers);
-        response = restTemplate.postForEntity("http://localhost:8082/api/pedidos", requestPedido, Pedido.class);
+        response = restTemplate.postForEntity("http://localhost:8081/api/pedidos", requestPedido, Pedido.class);
         return self();
     }
     private String toJson(Object objeto) {
