@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.edu.fiap.techchallengelanchonete.domain.Categoria;
+import br.com.edu.fiap.techchallengelanchonete.domain.Cliente.Cliente;
 import br.com.edu.fiap.techchallengelanchonete.domain.ItemPedido;
 import br.com.edu.fiap.techchallengelanchonete.domain.Pedido;
 import br.com.edu.fiap.techchallengelanchonete.domain.Produto;
@@ -71,6 +72,38 @@ public class PedidoControllerTest {
         verify(pedidoNovoPublisher, times(1)).publica(any(Pedido.class));
     }
 
+    @Test
+    void criaPedidoCliente() throws Exception {
+
+        salvaProdutoModelMock();
+
+        doNothing().when(pedidoNovoPublisher).publica(any(Pedido.class));
+
+        mvc.perform(post("/pedidos")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(toJson(pedidoMockCliente())))
+                .andExpect(status().isCreated());
+
+        verify(pedidoNovoPublisher, times(1)).publica(any(Pedido.class));
+    }
+
+    @Test
+    void listaPedidos() throws Exception {
+
+        mvc.perform(get("/pedidos"))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    void buscaPedido() throws Exception {
+
+        Long idPedido = 1l;
+        mvc.perform(get("/pedidos/" + idPedido))
+                .andExpect(status().isOk());
+
+    }
+
     private String toJson(Object objeto) {
         try {
             return new ObjectMapper().writeValueAsString(objeto);
@@ -94,6 +127,30 @@ public class PedidoControllerTest {
 
         List<ItemPedido> itens = new ArrayList<>();
         itens.add(item);
+
+        Pedido pedido = new Pedido();
+        pedido.setItens(itens);
+        return pedido;
+    }
+
+    private Pedido pedidoMockCliente() {
+        Categoria categoria = new Categoria();
+        categoria.setId(new Id(1l));
+
+        Produto produto = new Produto();
+        produto.setId(new Id(1l));
+        produto.setNome(new Nome("Hamburguer"));
+        produto.setCategoria(categoria);
+
+        ItemPedido item = new ItemPedido();
+        item.setProduto(produto);
+        item.setQuantidade(new Quantidade(1));
+
+        List<ItemPedido> itens = new ArrayList<>();
+        itens.add(item);
+
+        Cliente cliente = new Cliente();
+        cliente.setId(new Id(1l));
 
         Pedido pedido = new Pedido();
         pedido.setItens(itens);
