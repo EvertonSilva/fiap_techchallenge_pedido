@@ -52,8 +52,6 @@
                 <configuration>
                     <excludes>
                         <exclude>**/br/com/edu/fiap/techchallengelanchonete/validation/*</exclude>
-                        <exclude>**/br/com/edu/fiap/techchallengelanchonete/exception*</exclude>
-                        <exclude>**/br/com/edu/fiap/techchallengelanchonete/messaging*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
