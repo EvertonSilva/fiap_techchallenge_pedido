@@ -7,6 +7,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.retry.annotation.Backoff;
+import org.springframework.retry.annotation.Recover;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,6 +22,11 @@ public class PedidoNovoPublisher implements IPedidoNovoPublisher {
     @Autowired
     private PedidoAdapter pedidoAdapter;
     @Override
+    @Retryable(
+            value = {Exception.class},
+            maxAttempts = 4,
+            backoff = @Backoff(delay = 2000, multiplier = 2)
+    )
     public void publica(Pedido pedido) {
         var objectMapper = new ObjectMapper();
         var pedidoDTO = this.pedidoAdapter.toDTO(pedido);
@@ -28,5 +36,9 @@ public class PedidoNovoPublisher implements IPedidoNovoPublisher {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+    @Recover
+    public void recuperaMensagem(Exception e, Pedido pedido) {
+        throw new RuntimeException("O pedido não foi concluído por indisponibilidade técnica, tente novamente em instantes");
     }
 }

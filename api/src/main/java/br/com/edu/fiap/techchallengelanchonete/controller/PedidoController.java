@@ -2,6 +2,7 @@ package br.com.edu.fiap.techchallengelanchonete.controller;
 
 import br.com.edu.fiap.techchallengelanchonete.domain.Pedido;
 import br.com.edu.fiap.techchallengelanchonete.usecase.PedidoUseCase;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ public class PedidoController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<Pedido> pedido(@RequestBody Pedido pedido) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
