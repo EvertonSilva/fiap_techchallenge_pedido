@@ -24,7 +24,8 @@ public class PedidoNovoPublisher implements IPedidoNovoPublisher {
         var pedidoDTO = this.pedidoAdapter.toDTO(pedido);
         try {
             var mensagem = objectMapper.writeValueAsString(pedidoDTO);
-            rabbitTemplate.convertAndSend("NOVOS_PEDIDOS", mensagem);
+            rabbitTemplate.convertAndSend("NOVOS_PEDIDOS_PARA_PAGAMENTO", mensagem);
+            rabbitTemplate.convertAndSend("NOVOS_PEDIDOS_PARA_PREPARACAO", mensagem);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
