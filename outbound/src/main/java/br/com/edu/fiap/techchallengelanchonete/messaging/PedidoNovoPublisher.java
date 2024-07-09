@@ -38,7 +38,7 @@ public class PedidoNovoPublisher implements IPedidoNovoPublisher {
         }
     }
     @Recover
-    public void recuperaMensagem(Exception e, Pedido pedido) {
+    public void falhaRetentativas(Exception e, Pedido pedido) {
         throw new RuntimeException("Falha ao gerar o pedido, serviço temporariamente indisponível");
     }
 }
