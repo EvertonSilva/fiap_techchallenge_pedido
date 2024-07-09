@@ -39,6 +39,6 @@ public class PedidoNovoPublisher implements IPedidoNovoPublisher {
     }
     @Recover
     public void recuperaMensagem(Exception e, Pedido pedido) {
-        throw new RuntimeException("O pedido não foi concluído por indisponibilidade técnica, tente novamente em instantes");
+        throw new RuntimeException("Falha ao gerar o pedido, serviço temporariamente indisponível");
     }
 }
